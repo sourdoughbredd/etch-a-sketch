@@ -1,9 +1,5 @@
-// Get DOM nodes
-const container = document.querySelector('.container');
-const reset_button = document.querySelector('#reset-button');
-
 // Function to generate a square grid of a given size (number of squares per row/col)
-// 
+// that fills a 960x960px square
 function generateGrid(gridSize) {
     // Remove previous grid if it exists
     while (container.firstChild){
@@ -33,17 +29,28 @@ function generateGrid(gridSize) {
 
     squares.forEach(elem => {
         elem.style.flex = '1 1 auto';
-        elem.style.border = '2px solid black'
+        elem.style.border = '1px solid black'
     });
 }
 
 // Function to run when the reset button is pressed
 function resetButtonPressed() {
-    let size = prompt('Enter a grid size (1-100)');
+    let size = parseInt(prompt('Enter a grid size (1-100)'));
+    if (size >= 1 && size <= 100) {
+        generateGrid(size);
+    } else {
+        alert('Invalid entry. Enter an integer between 1 and 100.')
+        resetButtonPressed();
+    }
 }
+
+
+// Get DOM nodes
+const container = document.querySelector('.container');
+const reset_button = document.querySelector('#reset-button');
 
 // Generate Initial Grid
 generateGrid(16);
 
-// Generate new grid if user requests
-
+// Generate new grid if user hits the reset button
+reset_button.addEventListener('click', resetButtonPressed);
