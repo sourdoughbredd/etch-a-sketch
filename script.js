@@ -24,8 +24,6 @@ rows.forEach(elem => {
     elem.style.flex = '1 1 auto';
 });
 
-// let widthStr = window.getComputedStyle(container).getPropertyValue('width');
-// let item_size =  parseFloat(widthStr) / grid_size;
 squares.forEach(elem => {
     elem.style.flex = '1 1 auto';
     elem.style.border = '2px solid black'
