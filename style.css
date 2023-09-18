@@ -1,5 +1,18 @@
+#reset-button {
+  text-align: center;
+  font-size: 18px;
+  margin: 16px 36px;
+  width: 200px;
+  height: 40px;
+  border-radius: 6px;
+  background-color: rgb(153, 66, 66);
+  color: whitesmoke;
+  cursor: pointer;
+}
+
 .container {
   width: 960px;
   height: 960px;
-  margin: 36px;
+  margin-left: 36px;
+  margin-bottom: 36px;
 }
