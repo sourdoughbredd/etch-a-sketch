@@ -16,7 +16,7 @@ function generateGrid(gridSize) {
         }
         container.appendChild(rowDiv);
     }
-    // Format the grid using flexbox
+    // Format the grid using flexbox and add class to change color on mouseover
     const rows = document.querySelectorAll('.row');
     const squares = document.querySelectorAll('.square');
 
@@ -29,7 +29,8 @@ function generateGrid(gridSize) {
 
     squares.forEach(elem => {
         elem.style.flex = '1 1 auto';
-        elem.style.border = '1px solid black'
+        elem.style.border = '1px solid rgb(225,225,225)'
+        elem.addEventListener('mouseover', () => {elem.classList.add('hover');}, {once: true})
     });
 }
 
