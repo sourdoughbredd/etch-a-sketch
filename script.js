@@ -32,14 +32,17 @@ function generateGrid(gridSize) {
         elem.style.flex = '1 1 auto';
         elem.style.border = '1px solid rgb(225,225,225)'
         elem.style.backgroundColor = `rgba(${randRGB()},${randRGB()},${randRGB()}, 0)`;
-        elem.addEventListener('mouseover', () => {
+        // Add event listener for mouse travelling over the square
+        const hoverCallback = () => {
             // console.log(elem.style.backgroundColor)
             const tokens = elem.style.backgroundColor.split(',');
             // remove non-numeric chars and convert to number
             const rgbaValues = tokens.map((e) => Number(e.replace(/[^0-9.]/g, '')));
             const new_alpha = rgbaValues.pop() + 0.1;
             elem.style.backgroundColor = `rgba(${rgbaValues[0]},${rgbaValues[1]},${rgbaValues[2]}, ${new_alpha})`;
-        })
+            if (new_alpha === 1.0) { elem.removeEventListener('mouseover', hoverCallback) }; // event listener no longer needed once opacity 100%
+        }
+        elem.addEventListener('mouseover', hoverCallback)
     });
 }
 
