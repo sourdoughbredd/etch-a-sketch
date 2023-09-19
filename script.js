@@ -1,6 +1,7 @@
 // Function to generate a square grid of a given size (number of squares per row/col)
 // that fills a 960x960px square
 function generateGrid(gridSize) {
+    randRGB = () => Math.floor(Math.random() * 255);
     // Remove previous grid if it exists
     while (container.firstChild){
         container.removeChild(container.firstChild);
@@ -30,7 +31,15 @@ function generateGrid(gridSize) {
     squares.forEach(elem => {
         elem.style.flex = '1 1 auto';
         elem.style.border = '1px solid rgb(225,225,225)'
-        elem.addEventListener('mouseover', () => {elem.classList.add('hover');}, {once: true})
+        elem.style.backgroundColor = `rgba(${randRGB()},${randRGB()},${randRGB()}, 0)`;
+        elem.addEventListener('mouseover', () => {
+            // console.log(elem.style.backgroundColor)
+            const tokens = elem.style.backgroundColor.split(',');
+            // remove non-numeric chars and convert to number
+            const rgbaValues = tokens.map((e) => Number(e.replace(/[^0-9.]/g, '')));
+            const new_alpha = rgbaValues.pop() + 0.1;
+            elem.style.backgroundColor = `rgba(${rgbaValues[0]},${rgbaValues[1]},${rgbaValues[2]}, ${new_alpha})`;
+        })
     });
 }
 
